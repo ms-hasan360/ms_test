@@ -2,9 +2,14 @@ const express = require('express')
 const PORT = process.env.PORT || 3000
 
 const app = express()
+// setup views engine
+app.set('view engine', 'ejs')
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+
 
 app.get('/', (req, res) => {
-    res.send('ms hasan')
+    res.render('pages/full_part')
 })
 
 app.get('*', (req, res) => {
