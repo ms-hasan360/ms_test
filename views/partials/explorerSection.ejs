@@ -2,22 +2,20 @@
 <section class="bg-light">
     <div class="container">
         <div class="row">
-            <% for(let i =1 ; i<10 ; i++) { %>
-            <div class="col-md-4">
-                <div class="card-mb-4">
-                    <img src="../../public/images/download.jpg" class="card-img-top" alt="picture">
-                    <div class="card-body">
-                        <div class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti
-                            temporibus quis optio, nulla dolorem ad dolorum pariatur numquam enim deserunt?</div>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group my-2">
-                            <button class="btn btn-sm btn-outline-primary">Read</button>
-                            <button class="btn btn-sm btn-outline-primary">Views</button>
+            <% for(let i=1; i < 10; i++) { %>
+            <div class="col-lg-4 py-2">
+                    <div class="card">
+                        <a href="#" style="text-decoration: none;"><img src="../../public/images/download.jpg" class="card-img-top" alt="..."></a>
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="#" style="text-decoration: none;">Card Title</a></h5>
+                            <p class="card-text">This is a natural lead-in to additional
+                                content. This card has even longer content than the first to show that equal height action.</p>
                         </div>
-                        <small>10 min</small>
+                        <div class="card-footer">
+                            <small class="text-muted">Read 23 times</small> |
+                            <small class="text-muted">3 mins ago</small>
+                        </div>
                     </div>
-                </div>
             </div>
             <% } %>
         </div>
