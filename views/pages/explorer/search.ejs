@@ -1,0 +1,46 @@
+<%- include('../../partials/header.ejs') %>
+    <div class="container my-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h3>Search Result - <%= SearchTerm %></h3>
+
+            <% if (posts.length == 0) { %>
+
+            <p class="text-center text-muted py-4">Nothing Found</p>
+            <% } else { %>
+
+            <% for(let post of posts){ %>
+
+            <div class="card card-body mt-4">
+                <a href="/explorer/<%= post._id %>">
+                <h3><%= post.title %></h3>
+                <p><%= truncate(post.body) %></p>
+                </a>
+                <div class="d-flex">
+                        <small>
+                            <%= moment (post.createdAt) %>  | <%= post.readTime %>
+                        </small>
+                </div>
+            </div>
+            <% } %>
+
+            <% } %>
+            <% if(totalPage > 1 ) {%> 
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item mx-5 px-5  <%= currentPage == 1 ? 'disabled' : '' %> ">
+                            <a class="page-link" href="/search?term=<%= SearchTerm %>&page=<%= currentPage-1 %>">Previous</a>
+                        </li>
+                        <li class="page-item mx-5 px-5 <%= currentPage == totalPage ? 'disabled' : '' %>">
+                            <a class="page-link" href="/search?term=<%= SearchTerm %>&page=<%= currentPage + 1 %>">Next</a>
+                        </li> 
+                    </ul>
+                </nav>
+            <% } %>
+        </div>
+    </div>
+</div>
+<%- include('../../partials/footer.ejs') %>
+<script src="/scripts/links.js"></script>
+</body>
+</html>

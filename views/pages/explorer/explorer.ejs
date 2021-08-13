@@ -1,0 +1,84 @@
+<%- include('../../partials/header.ejs') %>
+
+<div class="container bg-info">
+    <section class="mb-5 mt-5 text-center ">
+        <a href="/explorer?filter=latest" class="btn <%= filter == 'latest' ? 'btn-primary': 'btn-secondary'%>">Latest</a>
+        <a href="/explorer?filter=week" class="btn <%= filter == 'week' ? 'btn-primary': 'btn-secondary'%>">Week</a>
+        <a href="/explorer?filter=month" class="btn <%= filter == 'month' ? 'btn-primary': 'btn-secondary'%>">Month</a>
+        <a href="/explorer?filter=all" class="btn <%= filter == 'all' ? 'btn-primary': 'btn-secondary'%>">All ( <small>
+                <%= totalPost %>
+            </small> )</a>
+    </section>
+</div>
+
+<!-- card -->
+<div>
+    <% if(posts.length==0) { %>
+        <p class="text-center text-muted">There is nothing to show</p>
+        <%} else { %>
+            <section class="bg-info">
+                <div class="container">
+                    <div class="row">
+                        <% for(let post of posts) { %>
+                            <% if(post.title) { %>
+                                <div class="col-lg-4 py-2">
+                                    <div class="card">
+                                        <a href="/explorer/<%= post._id %>" style="text-decoration: none;"><img
+                                                src="<%= post.thumbnail %>" class="card-img-top" height="200"
+                                                alt="<%= post.thumbnail %>"></a>
+                                        <div class="card-body">
+                                            <h5 class="card-title"><a href="/explorer/<%= post._id %>"
+                                                    style="text-decoration: none;">
+                                                    <%= post.title %>
+                                                </a>
+                                            </h5>
+                                            <p class="card-text" style="height:100px;">
+                                                <%= truncate(post.body) %>
+                                            </p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <small class="text-muted">
+                                                <%= post.readTime %>
+                                            </small> |
+                                            <small class="text-muted">
+                                                <%= moment (post.createdAt) %>
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } %>
+                    <% } %>
+                    </div>
+                </div>
+            </section>
+            <% } %>
+                
+</div>
+<!-- card section Ends -->
+
+
+
+
+
+    <div class="container my-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <% if(totalPage > 1 ) {%> 
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item mx-5 px-5  <%= currentPage == 1 ? 'disabled' : '' %> " >
+                            <a class="page-link" href="<%=`/explorer?filter=${filter}&page=${currentPage -1}` %>">Previous</a>
+                            
+                        </li>
+                        <li class="page-item mx-5 px-5 <%= currentPage == parseInt(totalPage+1) ? 'disabled' : '' %>">
+                            <a class="page-link" href="<%=` /explorer?filter=${filter}&page=${currentPage + 1}` %>">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            <% }%>
+        </div>
+    </div>
+</div>
+<%- include('../../partials/footer.ejs') %>
+</body>
+</html>

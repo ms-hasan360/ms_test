@@ -1,0 +1,43 @@
+<!-- card -->
+<div>
+    <% if(posts.length==0) { %>
+        <p class="text-center text-muted">There is nothing to show</p>
+        <%} else { %>
+            <section class="bg-light">
+                <div class="container">
+                    <div class="row">
+                        <% for(let post of posts) { %>
+                            <% if(post.title) { %>
+                                <div class="col-lg-4 py-2">
+                                    <div class="card">
+                                        <a href="/explorer/<%= post._id %>" style="text-decoration: none;"><img
+                                                src="<%= post.thumbnail %>" class="card-img-top" height="200"
+                                                alt="<%= post.thumbnail %>"></a>
+                                        <div class="card-body">
+                                            <h5 class="card-title"><a href="/explorer/<%= post._id %>"
+                                                    style="text-decoration: none;">
+                                                    <%= post.title %>
+                                                </a>
+                                            </h5>
+                                            <p class="card-text">
+                                                <%= truncate(post.body) %>
+                                            </p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <small class="text-muted">
+                                                <%= post.readTime %>
+                                            </small> |
+                                            <small class="text-muted">
+                                                <%= moment (post.createdAt) %>
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+            </section>
+            <% } %>
+                <% } %>
+                    <% } %>
+</div>
+<!-- card section Ends -->
