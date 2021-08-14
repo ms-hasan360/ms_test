@@ -1,13 +1,18 @@
 <%- include('../../partials/header.ejs') %>
 
-<div class="container bg-info">
-    <section class="mb-5 mt-5 text-center ">
-        <a href="/explorer?filter=latest" class="btn <%= filter == 'latest' ? 'btn-primary': 'btn-secondary'%>">Latest</a>
+<div class="container">
+    <section class="mb-5 mt-5 text-center">
+        <a href="/explorer?filter=latest" class="btn <%= filter == 'latest' || filter == '' ? 'btn-primary': 'btn-secondary'%>">Latest</a>
         <a href="/explorer?filter=week" class="btn <%= filter == 'week' ? 'btn-primary': 'btn-secondary'%>">Week</a>
         <a href="/explorer?filter=month" class="btn <%= filter == 'month' ? 'btn-primary': 'btn-secondary'%>">Month</a>
-        <a href="/explorer?filter=all" class="btn <%= filter == 'all' ? 'btn-primary': 'btn-secondary'%>">All ( <small>
-                <%= totalPost %>
-            </small> )</a>
+        <a href="/explorer?filter=all" class="btn <%= filter == 'all' ? 'btn-primary': 'btn-secondary'%>">All</a>
+        <br>
+        <p class="pt-1 text-white" style="text-align: left;">
+            Total Posts - <%= totalPost %> , 
+            Page Number - <%= currentPage %> , 
+            Current posts - <%= posts.length %>
+        </p>
+        
     </section>
 </div>
 
@@ -60,18 +65,17 @@
 
 
 
-    <div class="container my-5">
+    <div class="container my-4">
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <% if(totalPage > 1 ) {%> 
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
-                        <li class="page-item mx-5 px-5  <%= currentPage == 1 ? 'disabled' : '' %> " >
-                            <a class="page-link" href="<%=`/explorer?filter=${filter}&page=${currentPage -1}` %>">Previous</a>
-                            
+                        <li class="page-item mx-5 px-5">
+                            <a class="page-link btn <%= currentPage == 1 ? 'disabled btn-secondary' : 'btn-primary' %>" href="<%=`/explorer?filter=${filter}&page=${currentPage -1}` %>">Previous</a>
                         </li>
-                        <li class="page-item mx-5 px-5 <%= currentPage == parseInt(totalPage+1) ? 'disabled' : '' %>">
-                            <a class="page-link" href="<%=` /explorer?filter=${filter}&page=${currentPage + 1}` %>">Next</a>
+                        <li class="page-item mx-5 px-5">
+                            <a class="page-link btn <%= currentPage == parseInt(totalPage+1) ? 'disabled btn-secondary' : 'btn-primary' %>" href="<%=` /explorer?filter=${filter}&page=${currentPage + 1}` %>">Next</a>
                         </li>
                     </ul>
                 </nav>
